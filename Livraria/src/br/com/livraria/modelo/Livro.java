@@ -20,12 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.TypedQuery;
 
+import br.com.livraria.DAO.DAOUser;
 import br.com.livraria.DAO.JPAUtil;
 
 @NamedQuery(name = "Livro.getClientes", query = "SELECT c.cliente FROM Compra c join c.livros l  WHERE l = :pLivro")
 @Entity
 @Table(name = "LIVROS")
-public class Livro implements Serializable{
+public class Livro implements Serializable, DAOUser{
 
 	private static final long serialVersionUID = 3352799489280441981L;
 

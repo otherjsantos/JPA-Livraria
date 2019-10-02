@@ -12,13 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import br.com.livraria.DAO.DAOUser;
+
 @Entity
-@Table
-(
-		name = "ENDERECOS",
-		uniqueConstraints={@UniqueConstraint(columnNames={"CEP", "ESTADO"})}
-)
-public class Endereco implements Serializable{
+@Table(name = "ENDERECOS", uniqueConstraints = { @UniqueConstraint(columnNames = { "CEP", "ESTADO" }) })
+public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 2570710126051037579L;
 
