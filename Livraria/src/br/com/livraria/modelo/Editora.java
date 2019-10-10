@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+@NamedQuery(name = "Editora.getByCadastro", query = "SELECT e FROM Editora e WHERE e.cadastro = :pCadastro")
 @Entity
 @Table(name = "EDITORAS")
 public class Editora extends Pessoa {

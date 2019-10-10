@@ -14,7 +14,8 @@ import javax.persistence.TypedQuery;
 
 import br.com.livraria.DAO.JPAUtil;
 
-@NamedQuery(name = "Cliente.getLivros", query = "SELECT l FROM Compra c join c.livros l WHERE c.cliente = :pCliente")
+@NamedQuery(name = "Cliente.getByCadastro", query = "SELECT c FROM Cliente c WHERE c.cadastro = :pCadastro")
+@NamedQuery(name = "Cliente.getLivros", query = "SELECT DISTINCT l FROM Compra c join c.livros l WHERE c.cliente = :pCliente")
 @Entity
 @Table(name = "CLIENTES")
 public class Cliente extends Pessoa {

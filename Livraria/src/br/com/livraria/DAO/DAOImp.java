@@ -3,9 +3,9 @@ package br.com.livraria.DAO;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-public class DAOImp<TypeOfClass extends DAOUser> {
+public abstract class DAOImp<TypeOfClass extends DAOUser> {
 
-	private EntityManager em;
+	protected EntityManager em;
 
 	public DAOImp(EntityManager em) {
 		this.em = em;

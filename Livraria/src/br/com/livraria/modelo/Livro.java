@@ -23,7 +23,7 @@ import javax.persistence.TypedQuery;
 import br.com.livraria.DAO.DAOUser;
 import br.com.livraria.DAO.JPAUtil;
 
-@NamedQuery(name = "Livro.getClientes", query = "SELECT c.cliente FROM Compra c join c.livros l  WHERE l = :pLivro")
+@NamedQuery(name = "Livro.getClientes", query = "SELECT DISTINCT c.cliente FROM Compra c join c.livros l  WHERE l = :pLivro")
 @Entity
 @Table(name = "LIVROS")
 public class Livro implements Serializable, DAOUser{
