@@ -11,11 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+
+import br.com.livraria.DAO.DAOUser;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Pessoa implements Serializable{
+public abstract class Pessoa implements Serializable, DAOUser{
 
 	private static final long serialVersionUID = -5008927798279262520L;
 

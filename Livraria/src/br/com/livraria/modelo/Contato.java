@@ -9,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.livraria.DAO.DAOUser;
+
 @Entity
 @Table(name = "CONTATOS")
-public class Contato implements Serializable{
+public class Contato implements Serializable {
 
 	private static final long serialVersionUID = -9031951163167385071L;
 
@@ -29,11 +31,11 @@ public class Contato implements Serializable{
 	private Integer id;
 
 	// (xx)xxxxx-xxxx
-	@Column(name = "TELEFONE", nullable = true, length = 14, unique=true)
+	@Column(name = "TELEFONE", nullable = true, length = 14, unique = true)
 	private String telefone;
 
-	//name@email.com.br
-	@Column(name = "EMAIL", nullable = false, length = 256, unique=true)
+	// name@email.com.br
+	@Column(name = "EMAIL", nullable = false, length = 256, unique = true)
 	private String email;
 
 	public Integer getId() {

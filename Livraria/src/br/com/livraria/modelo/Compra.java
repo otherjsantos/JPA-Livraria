@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,11 +20,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+import br.com.livraria.DAO.DAOUser;
 import br.com.livraria.DAO.JPAUtil;
 
 @Entity
 @Table(name = "COMPRAS", uniqueConstraints = { @UniqueConstraint(columnNames = { "CODIGO", "CLIENTE_ID" }) })
-public class Compra implements Serializable {
+public class Compra implements Serializable, DAOUser{
 
 	private static final long serialVersionUID = -6280393187322821142L;
 
@@ -63,8 +65,12 @@ public class Compra implements Serializable {
 	private Calendar data;
 
 	@ManyToMany
-	@JoinTable(name = "COMPRAS_LIVROS", joinColumns = { @JoinColumn(name = "COMPRA_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "LIVRO_ID") })
+	@JoinTable
+	(
+			name = "COMPRAS_LIVROS", 
+			joinColumns = { @JoinColumn(name = "COMPRA_ID") }, 
+			inverseJoinColumns = { @JoinColumn(name = "LIVRO_ID") }
+	)
 	private List<Livro> livros;
 
 	@Column(name = "VALOR_TOTAL", nullable = false)

@@ -1,41 +1,50 @@
 package br.com.livraria.DAO;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
-public class DAOImp<TypeOfClass extends DAOUser> {
+public abstract class DAOImp<TypeOfClass extends DAOUser> {
 
-	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("livraria");
+	protected EntityManager em;
 
-	// Isolar a criação de gerente das entidades
-	private EntityManager getEntityManager() {
-		return emf.createEntityManager();
+	public DAOImp(EntityManager em) {
+		this.em = em;
 	}
 
 	public TypeOfClass findById(Class<TypeOfClass> entityClass, Integer id) {
-		return this.getEntityManager().find(entityClass, id);
+		return this.em.find(entityClass, id);
+	}
+
+	public TypeOfClass getReference(Class<TypeOfClass> entityClass, Integer id) {
+		return this.em.getReference(entityClass, id);
 	}
 
 	public void saveOrUpdate(TypeOfClass obj) {
 
-		EntityManager em = this.getEntityManager();
-
 		try {
-			em.getTransaction().begin();
+			this.em.getTransaction().begin();
 
 			if (obj.getId() == null) {
-				em.persist(obj);
+				this.em.persist(obj);
 			} else {
-				em.merge(obj);
+				this.em.merge(obj);
 			}
-			em.getTransaction().commit();
-			em.close();
+			this.em.getTransaction().commit();
 		} catch (Exception e) {
-			em.getTransaction().rollback();
-			em.close();
+			this.em.getTransaction().rollback();
 			System.out.println(e);
 		}
 	}
 
+	public void remove(Class<TypeOfClass> entityClass, Integer id) {
+
+		try {
+			this.em.getTransaction().begin();
+			this.em.remove(em.find(entityClass, id));
+			this.em.getTransaction().commit();
+		} catch (Exception e) {
+			this.em.getTransaction().rollback();
+			System.out.println(e);
+		}
+
+	}
 }
